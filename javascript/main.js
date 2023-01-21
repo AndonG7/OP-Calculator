@@ -11,22 +11,28 @@ function operands(str) {
     }
 }
 
-function result (main, num, lastOperand) {
+function result (mainn, numm, lastOperand) {
+
 
     if (lastOperand == 'plus') {
-        return main + num;
+
+        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn+numm));
+        return mainn + numm;
     }
 
     if (lastOperand == 'minus') {
-        return main - num;
+        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn-numm));
+        return mainn - numm;
     }
 
     if (lastOperand == 'divide') {
-        return main / num;
+        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn/numm));
+        return mainn / numm;
     }
 
     if (lastOperand == 'multiply') {
-        return main * num;
+        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn*numm));
+        return mainn * numm;
     }
 
 }
@@ -42,6 +48,7 @@ let num="";
 let main=0;
 let operandActive=false;
 let eqActive = false;
+let reset = false;
 let lastOperand;
 // let number1;
 // let number2;
@@ -61,9 +68,13 @@ button.forEach(btn =>
     let pInt = btn.id;
 
     if (operandActive == true) {
-        mainText.textContent = "";
-        num = "";
-        operandActive = false;
+        if (reset == true) {
+            mainText.textContent = "";
+            num = "";
+            reset = false;
+        }
+        num = num + pInt;
+        mainText.textContent = num;
     }
 
     if (pInt >= 0 && pInt <10 && operandActive == false){
@@ -83,22 +94,40 @@ button.forEach(btn =>
         location.reload();
     }
 
-    if (btn.id === 'plus' || btn.id === 'minus' || btn.id === 'multiply' || btn.id === 'divide' || btn.id === 'C'){
-        main = parseInt(num);
+    if (btn.id === 'plus' || btn.id === 'minus' || btn.id === 'multiply' || btn.id === 'divide'){
+        
+        
+        if (operandActive === true) {
+            operandText.textContent = operands(btn.id);
+            num = parseInt(num);
+            main = result (main, num, lastOperand);
+            mainText.textContent = Math.round(main * 100000) / 100000;;
+            opNumText.textContent = Math.round(main * 100000) / 100000;;
+            lastOperand = btn.id;
+            reset = true;
 
-        upper.style.visibility = 'visible';
-        operandText.textContent = operands(btn.id);
-        opNumText.textContent = main;
-        lastOperand = btn.id;
-        operandActive = true;
+        } else {
+            main = parseInt(num);
+            upper.style.visibility = 'visible';
+            operandText.textContent = operands(btn.id);
+            opNumText.textContent = Math.round(main * 100000) / 100000;;
+            lastOperand = btn.id;
+            operandActive = true;
+            reset = true;
+            console.log("Operand set to active");
+        }
     }
 
     if (btn.id === 'equals'){
         num = parseInt(num);
         main = result (main, num, lastOperand);
-        mainText.textContent = main;
+        mainText.textContent = Math.round(main * 100000) / 100000;
         upper.style.visibility = 'hidden';
         eqActive = true;
+    }
+
+    if (btn.id === 'CE') {
+        location.reload();
     }
 }
 ));
