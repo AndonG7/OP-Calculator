@@ -1,56 +1,11 @@
-function operands(str) {
-    switch (str) {
-        case 'plus': return '+';
-        break;
-        case 'minus': return '-';
-        break;
-        case 'multiply': return 'x';
-        break;
-        case 'divide': return '÷';
-        break;
-    }
-}
-
-function result (mainn, numm, lastOperand) {
-
-
-    if (isNaN(numm)) {
-        numm = mainn;
-    }
-
-
-    if (lastOperand == 'plus') {
-
-        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn+numm));
-        return mainn + numm;
-    }
-
-    if (lastOperand == 'minus') {
-        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn-numm));
-        return mainn - numm;
-    }
-
-    if (lastOperand == 'divide') {
-        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\nLastOperand: " + lastOperand + "\n Results: " + (mainn/numm));
-        if (mainn == 0 || numm == 0 ) {
-            console.log ("zero");
-            alert("Can't operate with zero!")
-        } 
-        return mainn / numm;
-    }
-
-    if (lastOperand == 'multiply') {
-        console.log("Result: \n Main: " + mainn + "\n Num: " + numm + "\n LastOperand: " + lastOperand + "\n Results: " + (mainn*numm));
-        return mainn * numm;
-    }
-
-}
-
 const button = document.querySelectorAll('.btn');
 const mainText = document.querySelector('.main');
 const operandText = document.querySelector('.operand');
 const opNumText = document.querySelector('.opNum');
 const upper = document.querySelector('.upper');
+const displayText = document.querySelector('.displayText');
+const displayTextFontSize = 50;
+
 let num="";
 let main=0;
 let operandActive=false;
@@ -70,11 +25,13 @@ button.forEach(btn =>
         }
         num = num + pInt;
         mainText.textContent = num;
+        decreaseFontSize();
     }
 
     if (pInt >= 0 && pInt <10 && operandActive == false){
         num = num + pInt;
         mainText.textContent = num;
+        decreaseFontSize();
     } 
 
     
@@ -118,7 +75,7 @@ button.forEach(btn =>
         }
     }
 
-    if (btn.id === 'equals'){
+    if (btn.id === 'equals' && main != 0){
         num = parseInt(num);
         main = result (main, num, lastOperand);
         mainText.textContent = Math.round(main * 100000) / 100000;

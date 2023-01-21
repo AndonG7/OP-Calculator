@@ -67,7 +67,7 @@ header {
     display: flex;
     visibility: hidden;
     gap: 15px;
-    font-size: 25px;
+    font-size: 20px;
     justify-content: end;
     color: rgb(68, 68, 68);
 }
