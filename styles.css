@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(233, 233, 233);
+    width: 350px;
+    box-shadow: 1px -1px 23px 3px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 1px -1px 23px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 1px -1px 23px 3px rgba(0,0,0,0.3);
+    outline: solid rgba(1, 1, 129, 0.486) 1px;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 200;
+    background-color: rgb(238, 238, 238);
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(83, 83, 83);
+    padding: 7px;
+}
+
+.windowButtons {
+    display: flex;
+    align-items: center;
+}
+
+.windowButtons span {
+    height: 100%;
+    padding: 5px 15px;
+}
+
+.windowButtons span:hover {
+    cursor: default;
+}
+
+.windowButtons span:hover { 
+    background-color: rgb(173, 173, 173);
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 150px;
+    padding-right: 25px;
+}
+
+.upper {
+    display: flex;
+    visibility: hidden;
+    gap: 15px;
+    font-size: 25px;
+    justify-content: end;
+    color: rgb(68, 68, 68);
+}
+
+.displayText {
+    display: flex;
+    align-items:flex-end;
+    flex: 1 1 2;
+    justify-content: end;
+    gap: 25px;
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 5px;
+    gap: 3px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    border-radius: 3px;
+    background-color: rgb(250, 250, 250);
+    transition: background-color 0.2s ease-in-out;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: rgb(240, 240, 240);
+    cursor: default;
+}
+
+#plus, #minus, #divide, #C, #equals, #multiply {
+    background-color: rgb(238, 238, 238);
+}
+
+#plus:hover, #minus:hover, #divide:hover, #C:hover, #equals:hover, #multiply:hover {
+    background-color: rgb(212, 212, 212);
+}
